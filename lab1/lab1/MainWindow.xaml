@@ -9,16 +9,49 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <ComboBox>
+            <ComboBox SelectionChanged="ComboBox_SelectionChanged" >
                 <ComboBoxItem>
-                    First
+                    Понедельник
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    Second
+                    Вторник
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Среда
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Четверг
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Пятница
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Суббота
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Воскресенье
                 </ComboBoxItem>
             </ComboBox>
-            <xctk:ColorPicker x:Name="Picker" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <GridSplitter Grid.Column="0" Background="Black" Width="10"
+                              HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+                <TextBlock Grid.Column="0" Margin="5">Мур</TextBlock>
+                <TextBlock Grid.Column="1" Margin="5">Мяу</TextBlock>
+            </Grid>
+
+            <StatusBar>
+                <StatusBarItem>
+                    <TextBlock Name="lblCursorPosition" />
+                </StatusBarItem>
+            </StatusBar>
 
         </StackPanel>
     </Grid>
+    
 </Window>
