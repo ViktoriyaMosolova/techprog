@@ -33,6 +33,8 @@
                 </ComboBoxItem>
             </ComboBox>
 
+            <xctk:ColorPicker/>
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
