@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using Xceed.Wpf.AvalonDock.Layout;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace lab1
 {
@@ -28,11 +30,10 @@ namespace lab1
         int count = 0;
         public MainWindow()
         {
-            InitializeComponent();
             Calc a = new Calc();
             a.calc();
+            InitializeComponent();
         }
-
         private void mouse(object sender, MouseEventArgs e)
         {
             lblCursorPosition.Text = "Мяу";
@@ -45,7 +46,7 @@ namespace lab1
 
         private void mousemove(object sender, MouseEventArgs e)
         {
-             lblCursorPosition.Text = "";
+            lblCursorPosition.Text = "";
         }
 
         private void mouseup(object sender, MouseButtonEventArgs e)
@@ -86,7 +87,25 @@ namespace lab1
             Mul = 3,
             Div = 4,
         };
-        public void calc()
+        public void calc() { 
+            if(value%2==0) {
+                flag = true;
+                Console.ReadLine();
+                Console.WriteLine("число {0} четное: {1}", value, flag);
+
+                string text = Convert.ToString("число " + value + " четное: " + flag);
+                string path = "C:\\Users\\1\\Desktop\\techprog\\lab1\\lab1\\Useless.txt";
+                using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    // преобразуем строку в байты
+                    byte[] input = Encoding.Default.GetBytes(text);
+                    // запись массива байтов в файл
+                    fstream.Write(input, 0, input.Length);
+                    Console.WriteLine("Текст записан в файл");
+                }
+            }
+        }
+        /*public void calc()
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -129,6 +148,6 @@ namespace lab1
             }
             Console.WriteLine("{0} {3} {1} = {2}",x, y ,result, c);
             Console.WriteLine("число четное: {0}\n",flag);
-        }
+        }*/
     }
 }
