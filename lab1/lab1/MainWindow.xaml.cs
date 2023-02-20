@@ -30,9 +30,9 @@ namespace lab1
         int count = 0;
         public MainWindow()
         {
+            InitializeComponent();
             Calc a = new Calc();
             a.calc();
-            InitializeComponent();
         }
         private void mouse(object sender, MouseEventArgs e)
         {
@@ -90,18 +90,12 @@ namespace lab1
         public void calc() { 
             if(value%2==0) {
                 flag = true;
-                Console.ReadLine();
-                Console.WriteLine("число {0} четное: {1}", value, flag);
-
                 string text = Convert.ToString("число " + value + " четное: " + flag);
                 string path = "C:\\Users\\1\\Desktop\\techprog\\lab1\\lab1\\Useless.txt";
                 using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
                 {
-                    // преобразуем строку в байты
                     byte[] input = Encoding.Default.GetBytes(text);
-                    // запись массива байтов в файл
                     fstream.Write(input, 0, input.Length);
-                    Console.WriteLine("Текст записан в файл");
                 }
             }
         }

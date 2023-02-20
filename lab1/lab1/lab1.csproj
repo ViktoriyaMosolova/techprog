@@ -120,5 +120,8 @@
   <ItemGroup>
     <Resource Include="Useless.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cat.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

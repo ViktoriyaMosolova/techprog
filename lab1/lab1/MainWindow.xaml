@@ -9,20 +9,20 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
+
             <StatusBar 
                 Background="White" 
                 MouseMove="mousemove" 
                 PreviewMouseUp="mouseup" >
                 <StatusBarItem 
-                    Margin="5"
                     Background="#FFDCC5EA">
                     <TextBlock 
+                        Margin="3"
                         Name="lblCursorPosition" 
                         Text="Status" 
-                        FontWeight="Bold"/>
+                        FontWeight="Bold" />
                 </StatusBarItem>
             </StatusBar>
-
             <ComboBox 
                 MouseEnter="mouse" 
                 MouseLeave="mouseleave">
@@ -38,7 +38,7 @@
             <xctk:ColorPicker 
                 SelectedColorChanged="changecolor" 
                 KeyUp="keyup"/>
-
+            <Image Source="/Cat.jpg" Height="300" Width="700" Margin="-1,0,0,0" OpacityMask="Black" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

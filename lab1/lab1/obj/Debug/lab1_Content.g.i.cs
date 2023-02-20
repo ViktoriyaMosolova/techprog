@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("useless.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cat.jpg")]
 
 
