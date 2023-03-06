@@ -24,8 +24,10 @@
                 </StatusBarItem>
             </StatusBar>
             <ComboBox 
+                SelectedIndex="0"
                 MouseEnter="mouse" 
                 MouseLeave="mouseleave">
+                <ComboBoxItem>Не выбрано</ComboBoxItem>
                 <ComboBoxItem>Понедельник</ComboBoxItem>
                 <ComboBoxItem>Вторник</ComboBoxItem>
                 <ComboBoxItem>Среда</ComboBoxItem>
@@ -34,10 +36,11 @@
                 <ComboBoxItem>Суббота</ComboBoxItem>
                 <ComboBoxItem>Воскресенье</ComboBoxItem>
             </ComboBox>
-
+            <TextBlock Margin="3">Выберите цвет:</TextBlock>
             <xctk:ColorPicker 
                 SelectedColorChanged="changecolor" 
                 KeyUp="keyup"/>
+            
             <Image Source="/Cat.jpg" Height="300" Width="700" Margin="-1,0,0,0" OpacityMask="Black" />
             <Grid>
                 <Grid.ColumnDefinitions>

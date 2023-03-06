@@ -27,7 +27,6 @@ namespace lab1
     /// </summary>
     public partial class MainWindow : Window
     {
-        int count = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -51,7 +50,6 @@ namespace lab1
 
         private void mouseup(object sender, MouseButtonEventArgs e)
         {
-            count++;
             lblCursorPosition.Text = "Тык";
         }
 
@@ -91,12 +89,13 @@ namespace lab1
             if(value%2==0) {
                 flag = true;
                 string text = Convert.ToString("число " + value + " четное: " + flag);
-                string path = "C:\\Users\\1\\Desktop\\techprog\\lab1\\lab1\\Useless.txt";
+                string path = @"C:\Users\1\Desktop\techprog\lab1\lab1\Useless.txt";
                 using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
                 {
                     byte[] input = Encoding.Default.GetBytes(text);
                     fstream.Write(input, 0, input.Length);
                 }
+                //Console.WriteLine(text);
             }
         }
         /*public void calc()

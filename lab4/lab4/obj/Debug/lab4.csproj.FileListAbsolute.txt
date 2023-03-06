@@ -1,0 +1,8 @@
+C:\Users\1\Desktop\techprog\lab4\lab4\bin\Debug\lab4.exe.config
+C:\Users\1\Desktop\techprog\lab4\lab4\bin\Debug\lab4.exe
+C:\Users\1\Desktop\techprog\lab4\lab4\bin\Debug\lab4.pdb
+C:\Users\1\Desktop\techprog\lab4\lab4\obj\Debug\lab4.csproj.AssemblyReference.cache
+C:\Users\1\Desktop\techprog\lab4\lab4\obj\Debug\lab4.csproj.SuggestedBindingRedirects.cache
+C:\Users\1\Desktop\techprog\lab4\lab4\obj\Debug\lab4.csproj.CoreCompileInputs.cache
+C:\Users\1\Desktop\techprog\lab4\lab4\obj\Debug\lab4.exe
+C:\Users\1\Desktop\techprog\lab4\lab4\obj\Debug\lab4.pdb

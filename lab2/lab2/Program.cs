@@ -22,7 +22,7 @@ internal class Program
         {
             Console.WriteLine("|{0,5}   |{1,8:0.00}   |", t, Сalculations.ValueCH(t)[Index]);
             if ((t+1)%10==0)
-            {
+            { 
                 Console.WriteLine();
             }
         }
@@ -43,6 +43,10 @@ public class Сalculations
             sum[2] += Math.Abs(exp_CH[i] - ValueCH(t[i])[2]) / 10;
             sum[3] += Math.Abs(exp_CH[i] - ValueCH(t[i])[3]) / 10;
             sum[4] += Math.Abs(exp_CH[i] - ValueCH(t[i])[4]) / 10;
+        }
+        for(int  i = 0; i < sum.Length; i++)
+        {
+            Console.WriteLine("Среднеквадратичная погрешность формулы {0}: {1:0.0000}\n",i,  sum[i]);
         }
         return sum.ToList().IndexOf(sum.Min());
     }
