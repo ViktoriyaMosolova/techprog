@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="800">
     <Grid>
-        <StackPanel Margin="100,14,100,15">
+        <StackPanel Margin="10,14,10,15">
             <Label Width="200" Content="Введите начальный х:" Target="{Binding ElementName=textBox1}" />
             <TextBox Width="200" Name="textBox1" />
             <Label Width="200" Content="Введите конечный х:" Target="{Binding ElementName=textBox2}" />
             <TextBox Width="200" Name="textBox2" />
             <Button Margin="0,20,0,0" Height="25" Width="100" Click="Button_Click">Рассчитать</Button>
             <Label Width="600" Content="Вывод:" Target="{Binding ElementName=textBox3}" />
-            <TextBox Name="textBox3" Width="500" Height="200"/>
+            <TextBox x:Name="textBox3" Width="700" Height="400"/>
         </StackPanel>
     </Grid>
 </Window>
