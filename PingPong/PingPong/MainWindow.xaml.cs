@@ -14,6 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Drawing;
+using System.Threading;
+using System.Timers;
+using Color = System.Windows.Media.Color;
+using System.IO;
+using System.Windows.Controls.Primitives;
 
 namespace PingPong
 {
@@ -22,79 +27,241 @@ namespace PingPong
     /// </summary>
     public partial class MainWindow : Window
     {
-        int addballx = 5;
-        int addbally = 5;
-        double ballSpeedX = 1;
-        double ballSpeedY = 1;
-        int countleft = 0;
-        int countright = 0;
-        DispatcherTimer timer = new DispatcherTimer();
+        private double ballX, ballY, ballSpeedX, ballSpeedY;
+        private double player1Y, player2Y, playerSpeed;
+        DispatcherTimer timer;
+        private int countleft, countright;
+        string nameleftplayer, namerightplayer;
+
         public MainWindow()
         {
             InitializeComponent();
-            label1.Visibility = Visibility.Hidden;
-            timer.Interval = TimeSpan.FromMilliseconds(20);
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
-            Canvas.SetLeft(Ball, ActiveZone.ActualWidth/2);
-            Canvas.SetTop(Ball, ActiveZone.ActualHeight / 2);
+            run.Visibility = Visibility.Visible;
+            gameover.Visibility = Visibility.Hidden;
+            pause.Visibility = Visibility.Hidden;
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        void InitData()
+        {
+            gameover.Visibility = Visibility.Hidden;
+            run.Visibility = Visibility.Hidden;
+            pause.Visibility = Visibility.Hidden;
+
+            initBall();
+            initRacket();
+            SetSpeed();
+            SetBall();
+            SetRacket();
+        }
+        void initBall()
+        {
+            // Начальная позиция мяча
+            ballX = -Ball.Width / 2;
+            ballY = -Ball.Height / 2;
+        }
+        void initRacket()
+        {
+            // Начальная позиция ракеток
+            player1Y = -LeftRacket.Height / 2;
+            player2Y = -RightRacket.Height / 2;
+        }
+        void initSpeed(int speed)
+        {
+            // Скорость мяча и ракеток
+            ballSpeedX = speed;
+            ballSpeedY = speed;
+            playerSpeed = speed;
+        }
+        void SetBall()
+        {
+            Canvas.SetLeft(Ball, ballX);
+            Canvas.SetTop(Ball, ballY);
+        }
+        void SetRacket()
+        {
+            Canvas.SetTop(LeftRacket, player1Y);
+            Canvas.SetTop(RightRacket, player2Y);
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SetName();
+            SetSpeed();
+            tabControl1.SelectedIndex = 0;
+        }
+        void SetName()
+        {
+            nameleftplayer = leftname.Text;
+            namerightplayer = rightname.Text;
+            left.Content = $"{nameleftplayer}: " + countleft.ToString();
+            right.Content = $"{namerightplayer}: " + countright.ToString();
+        }
+        void SetSpeed()
+        {
+            if (level.SelectedIndex == 0)
+            {
+                initSpeed(5);
+            }
+            else if (level.SelectedIndex == 1)
+            {
+                initSpeed(8);
+            }
+            else if (level.SelectedIndex == 2)
+            {
+                initSpeed(12);
+            }
+        }
+
+        private void InitTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(20);
+            timer.Tick += timer_Tick;
+        }
+        private void StartTimer()
+        {
+            timer.Stop();
+            timer.Start();
+        }
+        private void Run_Click(object sender, RoutedEventArgs e)
+        {
+            InitData();
+            InitTimer();
+            StartTimer();
+            countleft = 0;
+            countright = 0;
+            SetName();
+            SetSpeed();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
         {
             UpdateBall();
         }
 
         void UpdateBall()
         {
-            Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) + ballSpeedX*addballx);
-            //Canvas.SetTop(Ball, Canvas.GetTop(Ball) + ballSpeedY*addbally);
-            if (Canvas.GetTop(Ball) < -((int)ActiveZone.ActualHeight/2))
-            {
-                ballSpeedX *= -1;
-                ballSpeedY *= -1;
-                addbally -= addbally;
+            ColorPlayers();
+            // Обновление позиции мяча
+            ballX -= ballSpeedX;
+            ballY += ballSpeedY;
 
-            } 
-            else if(Canvas.GetTop(Ball) > (int)ActiveZone.ActualHeight/2 - (int)Ball.ActualHeight)
+            int stop = (int)ActiveZone.ActualHeight / 2;
+            // Обновление позиции ракеток
+            if (Keyboard.IsKeyDown(Key.A) && player1Y > -stop)
             {
-                ballSpeedX *= -1;
+                player1Y -= playerSpeed;
+            }
+            if (Keyboard.IsKeyDown(Key.Z) && player1Y < stop - LeftRacket.ActualHeight)
+            {
+                player1Y += playerSpeed;
+            }
+            if (Keyboard.IsKeyDown(Key.K) && player2Y > -stop)
+            {
+                player2Y -= playerSpeed;
+            }
+            if (Keyboard.IsKeyDown(Key.M) && player2Y < stop - RightRacket.ActualHeight)
+            {
+                player2Y += playerSpeed;
+            }
+
+            if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                GameOver();
+            }
+
+            if (Keyboard.IsKeyDown(Key.Space))// это типа пауза
+            { 
+                pause.Visibility = Visibility.Visible;
+                if (timer.IsEnabled)//ИГРА РАБОТАЕТ
+                {
+                    timer.Stop();//Я ЕЕ ВЫРУБАЮ
+                }
+                else if(!timer.IsEnabled)//игра не работает. то бишь пауза
+                {
+                    //почему блять не работает((((((((((((((((((((((((((((((((((((((((((((
+                    //StartTimer();// я ее включаю....но она не включается(
+                    InitData();
+                    InitTimer();
+                    StartTimer();
+                    SetName();
+                    SetSpeed();
+                    //как жить а
+                }
+            }
+            // Обработка столкновений мяча с ракетками и краями поля
+            if (ballY >= (int)ActiveZone.ActualHeight / 2 - Ball.ActualHeight)
+            {
                 ballSpeedY *= -1;
             }
-            if(Canvas.GetLeft(Ball) < -((int)ActiveZone.ActualWidth/2 - (int)LeftRacket.ActualWidth) && (Canvas.GetTop(Ball) > LeftRacket.Margin.Top)){
-                ballSpeedX *= -1;
-                //addbally -= addbally;
+            if (ballY <= -(int)ActiveZone.ActualHeight / 2)
+            {
+                ballSpeedY *= -1;
             }
-            else if ((Canvas.GetLeft(Ball) > ((int)ActiveZone.ActualWidth/2 - 2*(int)RightRacket.ActualWidth)))
+
+            double leftval = -(Canvas.GetTop(LeftRacket));
+            double ballval = -(Canvas.GetTop(Ball) + Ball.Height/2);
+            double rightval = -(Canvas.GetTop(RightRacket));
+
+            if (ballX > (int)ActiveZone.ActualWidth / 2 - 2 * RightRacket.Width && (ballval <= rightval && ballval + RightRacket.Height >= rightval))
             {
                 ballSpeedX *= -1;
-                //addbally -= addbally;
             }
+            else if(ballX > (int)ActiveZone.ActualWidth / 2 - RightRacket.Width)
+            {
+                initBall();
+                countleft++;
+                left.Content = $"{nameleftplayer}: " + countleft.ToString();
+            }
+            if (ballX < -(int)ActiveZone.ActualWidth / 2 + LeftRacket.Width && (ballval <= leftval && ballval + LeftRacket.Height >= leftval))
+            {
+                ballSpeedX *= -1;
+            }
+            else if (ballX < -(int)ActiveZone.ActualWidth / 2 )
+            {
+                initBall();
+                countright++;
+                right.Content = $"{namerightplayer}: " + countright.ToString();
+            }
+
+            // Отображение мяча и ракеток на поле
+            SetBall();
+            SetRacket();
         }
 
-        //countleft++; left.Content = $"Левый игрок: {countleft}";
-        //countright++;  right.Content = $"Правый игрок: {countright}";
-
-        private void UserKeyDown(object sender, KeyEventArgs e)
+        void ColorPlayers()
         {
-            int Stop = (int)ActiveZone.ActualHeight - (int)LeftRacket.ActualHeight;
-            if (e.Key == Key.A && LeftRacket.Margin.Top > -Stop)
+            if (countleft > countright)
             {
-                LeftRacket.Margin = new Thickness(LeftRacket.Margin.Left, LeftRacket.Margin.Top - 5, LeftRacket.Margin.Right, LeftRacket.Margin.Bottom);
+                left.Foreground = new SolidColorBrush(Color.FromRgb(110, 222, 54));
+                right.Foreground = new SolidColorBrush(Color.FromRgb(228, 38, 38));
             }
-            if (e.Key == Key.Z && LeftRacket.Margin.Top < Stop)
+            else if (countleft < countright)
             {
-                LeftRacket.Margin = new Thickness(LeftRacket.Margin.Left, LeftRacket.Margin.Top + 5, LeftRacket.Margin.Right, LeftRacket.Margin.Bottom);
+                left.Foreground = new SolidColorBrush(Color.FromRgb(228, 38, 38));
+                right.Foreground = new SolidColorBrush(Color.FromRgb(110, 222, 54));
             }
-            if (e.Key == Key.K && RightRacket.Margin.Top > -Stop)
+            else
             {
-                RightRacket.Margin = new Thickness(RightRacket.Margin.Left, RightRacket.Margin.Top - 5, RightRacket.Margin.Right, RightRacket.Margin.Bottom);
-            }
-            if (e.Key == Key.M && RightRacket.Margin.Top < Stop)
-            {
-                RightRacket.Margin = new Thickness(RightRacket.Margin.Left, RightRacket.Margin.Top + 5, RightRacket.Margin.Right, RightRacket.Margin.Bottom);
+                left.Foreground = new SolidColorBrush(Color.FromRgb(38, 124, 228));
+                right.Foreground = new SolidColorBrush(Color.FromRgb(38, 124, 228));
             }
         }
+        void GameOver()
+        {
+            gameover.Visibility = Visibility.Visible;
+            run.Visibility = Visibility.Visible;
+            timer.Stop();
+            FileOutput();
+        }
 
+        void FileOutput()
+        {
+            string filePath = @"C:\Users\mosol\OneDrive\Рабочий стол\results.txt.txt";
+            string res = DateTime.Now.ToString().PadLeft(20) + ($"{nameleftplayer}:").PadLeft(20) + ($"{countleft}").PadLeft(10) + ($"{namerightplayer}:").PadLeft(20) + ($"{countright}").PadLeft(10);
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(res);
+            }
+        }
     }
 }
