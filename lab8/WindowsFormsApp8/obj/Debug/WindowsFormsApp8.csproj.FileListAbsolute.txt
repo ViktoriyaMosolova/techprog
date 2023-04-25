@@ -9,3 +9,14 @@ C:\Users\1\Desktop\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csp
 C:\Users\1\Desktop\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csproj.CoreCompileInputs.cache
 C:\Users\1\Desktop\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.exe
 C:\Users\1\Desktop\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.pdb
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\bin\Debug\WindowsFormsApp8.exe.config
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\bin\Debug\WindowsFormsApp8.exe
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\bin\Debug\WindowsFormsApp8.pdb
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csproj.AssemblyReference.cache
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csproj.SuggestedBindingRedirects.cache
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.Form1.resources
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.Properties.Resources.resources
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csproj.GenerateResource.cache
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.csproj.CoreCompileInputs.cache
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.exe
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\lab8\WindowsFormsApp8\obj\Debug\WindowsFormsApp8.pdb

@@ -30,94 +30,130 @@ namespace WindowsFormsApp8
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.topLeftRow1 = new System.Windows.Forms.NumericUpDown();
-            this.topLeftCol1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBoxsymbol = new System.Windows.Forms.GroupBox();
+            this.listBoxSymbol = new System.Windows.Forms.ListBox();
+            this.groupBoxchangeregistr = new System.Windows.Forms.GroupBox();
+            this.listBoxRegistr = new System.Windows.Forms.ListBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.topLeftCol1 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.topLeftRow1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bottomRightCol1 = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.bottomRightRow1 = new System.Windows.Forms.NumericUpDown();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBoxchangeregistr = new System.Windows.Forms.GroupBox();
-            this.groupBoxsymbol = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.topLeftRow1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topLeftCol1)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage2.SuspendLayout();
+            this.groupBoxsymbol.SuspendLayout();
+            this.groupBoxchangeregistr.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topLeftCol1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topLeftRow1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bottomRightCol1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomRightRow1)).BeginInit();
-            this.groupBoxchangeregistr.SuspendLayout();
-            this.groupBoxsymbol.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // tabPage2
             // 
-            this.button1.Location = new System.Drawing.Point(240, 250);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(304, 32);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Вывести подматрицу";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tabPage2.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage2.Controls.Add(this.groupBoxsymbol);
+            this.tabPage2.Controls.Add(this.groupBoxchangeregistr);
+            this.tabPage2.Location = new System.Drawing.Point(8, 39);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1364, 807);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Настройки";
             // 
-            // topLeftRow1
+            // groupBoxsymbol
             // 
-            this.topLeftRow1.Location = new System.Drawing.Point(68, 27);
-            this.topLeftRow1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.topLeftRow1.Name = "topLeftRow1";
-            this.topLeftRow1.Size = new System.Drawing.Size(52, 20);
-            this.topLeftRow1.TabIndex = 4;
-            this.topLeftRow1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.groupBoxsymbol.Controls.Add(this.listBoxSymbol);
+            this.groupBoxsymbol.Location = new System.Drawing.Point(726, 170);
+            this.groupBoxsymbol.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBoxsymbol.Name = "groupBoxsymbol";
+            this.groupBoxsymbol.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBoxsymbol.Size = new System.Drawing.Size(400, 192);
+            this.groupBoxsymbol.TabIndex = 18;
+            this.groupBoxsymbol.TabStop = false;
+            this.groupBoxsymbol.Text = "Применить:";
             // 
-            // topLeftCol1
+            // listBoxSymbol
             // 
-            this.topLeftCol1.Location = new System.Drawing.Point(208, 27);
-            this.topLeftCol1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.topLeftCol1.Name = "topLeftCol1";
-            this.topLeftCol1.Size = new System.Drawing.Size(52, 20);
-            this.topLeftCol1.TabIndex = 5;
-            this.topLeftCol1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.listBoxSymbol.FormattingEnabled = true;
+            this.listBoxSymbol.ItemHeight = 25;
+            this.listBoxSymbol.Items.AddRange(new object[] {
+            "К русским символам",
+            "К латинским символам",
+            "Ко всем"});
+            this.listBoxSymbol.Location = new System.Drawing.Point(9, 37);
+            this.listBoxSymbol.Name = "listBoxSymbol";
+            this.listBoxSymbol.Size = new System.Drawing.Size(374, 129);
+            this.listBoxSymbol.TabIndex = 20;
+            this.listBoxSymbol.SelectedIndexChanged += new System.EventHandler(this.listBoxSymbol_SelectedIndexChanged);
             // 
-            // label2
+            // groupBoxchangeregistr
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Строка";
+            this.groupBoxchangeregistr.Controls.Add(this.listBoxRegistr);
+            this.groupBoxchangeregistr.Location = new System.Drawing.Point(256, 170);
+            this.groupBoxchangeregistr.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBoxchangeregistr.Name = "groupBoxchangeregistr";
+            this.groupBoxchangeregistr.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBoxchangeregistr.Size = new System.Drawing.Size(448, 192);
+            this.groupBoxchangeregistr.TabIndex = 17;
+            this.groupBoxchangeregistr.TabStop = false;
+            this.groupBoxchangeregistr.Text = "Преобразовать в регистр:";
             // 
-            // label3
+            // listBoxRegistr
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(144, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Столбец";
+            this.listBoxRegistr.FormattingEnabled = true;
+            this.listBoxRegistr.ItemHeight = 25;
+            this.listBoxRegistr.Items.AddRange(new object[] {
+            "Верхний",
+            "Верхний(только 1 символ)",
+            "Нижний",
+            "Не преобразовывать"});
+            this.listBoxRegistr.Location = new System.Drawing.Point(30, 37);
+            this.listBoxRegistr.Name = "listBoxRegistr";
+            this.listBoxRegistr.Size = new System.Drawing.Size(374, 129);
+            this.listBoxRegistr.TabIndex = 19;
+            this.listBoxRegistr.SelectedIndexChanged += new System.EventHandler(this.listBoxRegistr_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1364, 807);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Выбор подматрицы";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Items.AddRange(new object[] {
+            "в форму",
+            "во вкладку"});
+            this.listBox1.Location = new System.Drawing.Point(669, 444);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(214, 54);
+            this.listBox1.TabIndex = 11;
             // 
             // groupBox1
             // 
@@ -125,12 +161,72 @@ namespace WindowsFormsApp8
             this.groupBox1.Controls.Add(this.topLeftCol1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.topLeftRow1);
-            this.groupBox1.Location = new System.Drawing.Point(240, 98);
+            this.groupBox1.Location = new System.Drawing.Point(348, 161);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(304, 65);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox1.Size = new System.Drawing.Size(608, 125);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Координата левого верхнего элемента подматрицы:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 56);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 25);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Строка";
+            // 
+            // topLeftCol1
+            // 
+            this.topLeftCol1.Location = new System.Drawing.Point(416, 52);
+            this.topLeftCol1.Margin = new System.Windows.Forms.Padding(6);
+            this.topLeftCol1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.topLeftCol1.Name = "topLeftCol1";
+            this.topLeftCol1.Size = new System.Drawing.Size(104, 31);
+            this.topLeftCol1.TabIndex = 5;
+            this.topLeftCol1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.topLeftCol1.ValueChanged += new System.EventHandler(this.topLeftCol1_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(288, 56);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 25);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Столбец";
+            // 
+            // topLeftRow1
+            // 
+            this.topLeftRow1.Location = new System.Drawing.Point(136, 52);
+            this.topLeftRow1.Margin = new System.Windows.Forms.Padding(6);
+            this.topLeftRow1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.topLeftRow1.Name = "topLeftRow1";
+            this.topLeftRow1.Size = new System.Drawing.Size(104, 31);
+            this.topLeftRow1.TabIndex = 4;
+            this.topLeftRow1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.topLeftRow1.ValueChanged += new System.EventHandler(this.topLeftRow1_ValueChanged);
             // 
             // groupBox2
             // 
@@ -138,9 +234,11 @@ namespace WindowsFormsApp8
             this.groupBox2.Controls.Add(this.bottomRightCol1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.bottomRightRow1);
-            this.groupBox2.Location = new System.Drawing.Point(240, 179);
+            this.groupBox2.Location = new System.Drawing.Point(348, 298);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 65);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox2.Size = new System.Drawing.Size(608, 125);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Координата правого нижнего элемента подматрицы:";
@@ -148,166 +246,142 @@ namespace WindowsFormsApp8
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 29);
+            this.label1.Location = new System.Drawing.Point(38, 56);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 6;
             this.label1.Text = "Строка";
             // 
             // bottomRightCol1
             // 
-            this.bottomRightCol1.Location = new System.Drawing.Point(208, 27);
+            this.bottomRightCol1.Location = new System.Drawing.Point(416, 52);
+            this.bottomRightCol1.Margin = new System.Windows.Forms.Padding(6);
             this.bottomRightCol1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.bottomRightCol1.Name = "bottomRightCol1";
-            this.bottomRightCol1.Size = new System.Drawing.Size(52, 20);
+            this.bottomRightCol1.Size = new System.Drawing.Size(104, 31);
             this.bottomRightCol1.TabIndex = 5;
             this.bottomRightCol1.Value = new decimal(new int[] {
             3,
             0,
             0,
             0});
+            this.bottomRightCol1.ValueChanged += new System.EventHandler(this.bottomRightCol1_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(144, 29);
+            this.label4.Location = new System.Drawing.Point(288, 56);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(97, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Столбец";
             // 
             // bottomRightRow1
             // 
-            this.bottomRightRow1.Location = new System.Drawing.Point(68, 27);
+            this.bottomRightRow1.Location = new System.Drawing.Point(136, 52);
+            this.bottomRightRow1.Margin = new System.Windows.Forms.Padding(6);
             this.bottomRightRow1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.bottomRightRow1.Name = "bottomRightRow1";
-            this.bottomRightRow1.Size = new System.Drawing.Size(52, 20);
+            this.bottomRightRow1.Size = new System.Drawing.Size(104, 31);
             this.bottomRightRow1.TabIndex = 4;
             this.bottomRightRow1.Value = new decimal(new int[] {
             3,
             0,
             0,
             0});
+            this.bottomRightRow1.ValueChanged += new System.EventHandler(this.bottomRightRow1_ValueChanged);
             // 
-            // checkedListBox2
+            // button1
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "К русским символам",
-            "К латинским символам"});
-            this.checkedListBox2.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(174, 49);
-            this.checkedListBox2.TabIndex = 13;
+            this.button1.Location = new System.Drawing.Point(411, 444);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 63);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Вывести:";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // checkedListBox1
+            // tabControl1
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Верхний",
-            "Нижний"});
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(174, 34);
-            this.checkedListBox1.TabIndex = 14;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(0, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1380, 854);
+            this.tabControl1.TabIndex = 19;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // checkedListBox3
+            // tabPage3
             // 
-            this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Items.AddRange(new object[] {
-            "Все символы",
-            "Первый символ"});
-            this.checkedListBox3.Location = new System.Drawing.Point(6, 59);
-            this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(174, 34);
-            this.checkedListBox3.TabIndex = 15;
-            this.checkedListBox3.SelectedIndexChanged += new System.EventHandler(this.checkedListBox3_SelectedIndexChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(560, 98);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 184);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Преобразовать подматрицу";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // groupBoxchangeregistr
-            // 
-            this.groupBoxchangeregistr.Controls.Add(this.checkedListBox1);
-            this.groupBoxchangeregistr.Controls.Add(this.checkedListBox3);
-            this.groupBoxchangeregistr.Location = new System.Drawing.Point(34, 98);
-            this.groupBoxchangeregistr.Name = "groupBoxchangeregistr";
-            this.groupBoxchangeregistr.Size = new System.Drawing.Size(200, 100);
-            this.groupBoxchangeregistr.TabIndex = 17;
-            this.groupBoxchangeregistr.TabStop = false;
-            this.groupBoxchangeregistr.Text = "Преобразовать в регистр:";
-            // 
-            // groupBoxsymbol
-            // 
-            this.groupBoxsymbol.Controls.Add(this.checkedListBox2);
-            this.groupBoxsymbol.Location = new System.Drawing.Point(34, 204);
-            this.groupBoxsymbol.Name = "groupBoxsymbol";
-            this.groupBoxsymbol.Size = new System.Drawing.Size(200, 78);
-            this.groupBoxsymbol.TabIndex = 18;
-            this.groupBoxsymbol.TabStop = false;
-            this.groupBoxsymbol.Text = "Применить к:";
+            this.tabPage3.Location = new System.Drawing.Point(8, 39);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1364, 807);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Вывод подматрицы";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBoxsymbol);
-            this.Controls.Add(this.groupBoxchangeregistr);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(1379, 865);
+            this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.topLeftRow1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topLeftCol1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBoxsymbol.ResumeLayout(false);
+            this.groupBoxchangeregistr.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topLeftCol1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topLeftRow1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bottomRightCol1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomRightRow1)).EndInit();
-            this.groupBoxchangeregistr.ResumeLayout(false);
-            this.groupBoxsymbol.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown topLeftRow1;
-        private System.Windows.Forms.NumericUpDown topLeftCol1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown bottomRightCol1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown bottomRightRow1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBoxchangeregistr;
-        private System.Windows.Forms.GroupBox groupBoxsymbol;
+
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private GroupBox groupBoxsymbol;
+        private ListBox listBoxSymbol;
+        private GroupBox groupBoxchangeregistr;
+        private ListBox listBoxRegistr;
+        private ListBox listBox1;
+        private GroupBox groupBox1;
+        private Label label2;
+        private NumericUpDown topLeftCol1;
+        private Label label3;
+        private NumericUpDown topLeftRow1;
+        private GroupBox groupBox2;
+        private Label label1;
+        private NumericUpDown bottomRightCol1;
+        private Label label4;
+        private NumericUpDown bottomRightRow1;
+        private Button button1;
+        private TabControl tabControl1;
+        private TabPage tabPage3;
     }
 }
 
