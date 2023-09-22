@@ -19,12 +19,21 @@ using System.Timers;
 using Color = System.Windows.Media.Color;
 using System.IO;
 using System.Windows.Controls.Primitives;
+using System.Reflection;
+using LiveCharts.Wpf;
+using LiveCharts;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using System.Windows.Media.Media3D;
+
 
 namespace PingPong
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         private double ballX, ballY, ballSpeedX, ballSpeedY;
@@ -32,13 +41,90 @@ namespace PingPong
         DispatcherTimer timer;
         private int countleft, countright;
         string nameleftplayer, namerightplayer;
-
+        private bool isPaused = false;
         public MainWindow()
         {
             InitializeComponent();
+            tabControl1.SelectedIndex = 1;
             run.Visibility = Visibility.Visible;
             gameover.Visibility = Visibility.Hidden;
             pause.Visibility = Visibility.Hidden;
+            UpdateGraph();
+        }
+
+        Dictionary<string, int> wins = new Dictionary<string, int>();
+
+        public Dictionary<string, int> ParseFile()
+        {
+            string filePath = Environment.CurrentDirectory + "//results.txt";
+            wins.Clear();
+
+            foreach (string line in File.ReadLines(filePath))
+            {
+                string[] tokens = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // проверяем, что строка содержит информацию о победе
+                if (tokens[10].Trim().StartsWith("Win"))
+                {
+                    string winner = tokens[11].Trim();
+                    if (!wins.ContainsKey(winner))
+                        wins[winner] = 0;
+                    wins[winner]++;
+                }
+            }
+
+            var topPlayers = wins.OrderByDescending(pair => pair.Value)
+                                .Take(5).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            Console.WriteLine("Top 5 players with the most wins:");
+            foreach (var player in topPlayers)
+            {
+                Console.WriteLine("{0}: {1} wins", player.Key, player.Value);
+            }
+
+            return topPlayers;
+        }
+
+        public PlotModel MyModel { get; set; }
+        void UpdateGraph()
+        {
+            try
+            {
+                MyModel = new PlotModel();
+                var topPlayers = ParseFile();
+                MyModel.Series.Clear();
+
+                var barItems = new List<BarItem>();
+                var categories = new List<string>();
+
+                for (int i = 4; i >= 0; i--)
+                {
+                    barItems.Add(new BarItem { Value = topPlayers.Values.ToList()[i] });
+                    categories.Add(topPlayers.Keys.ToList()[i]);
+                }
+
+                var barSeries = new BarSeries
+                {
+                    ItemsSource = barItems,
+                    LabelPlacement = LabelPlacement.Inside,
+                    LabelFormatString = "{0}"
+                };
+                MyModel.Series.Add(barSeries);
+
+                MyModel.Axes.Add(new CategoryAxis
+                {
+                    Position = OxyPlot.Axes.AxisPosition.Left,
+                    Key = "Axis",
+                    ItemsSource = categories
+                });
+
+                plot.Model = MyModel;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
 
         void InitData()
@@ -52,6 +138,7 @@ namespace PingPong
             SetSpeed();
             SetBall();
             SetRacket();
+
         }
         void initBall()
         {
@@ -103,11 +190,11 @@ namespace PingPong
             }
             else if (level.SelectedIndex == 1)
             {
-                initSpeed(8);
+                initSpeed(10);
             }
             else if (level.SelectedIndex == 2)
             {
-                initSpeed(12);
+                initSpeed(15);
             }
         }
 
@@ -116,12 +203,14 @@ namespace PingPong
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(20);
             timer.Tick += timer_Tick;
+            this.KeyDown += OnKeyDown;
         }
         private void StartTimer()
         {
             timer.Stop();
             timer.Start();
         }
+
         private void Run_Click(object sender, RoutedEventArgs e)
         {
             InitData();
@@ -131,6 +220,7 @@ namespace PingPong
             countright = 0;
             SetName();
             SetSpeed();
+            isPaused = false;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -138,9 +228,36 @@ namespace PingPong
             UpdateBall();
         }
 
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                if (!isPaused)
+                {
+                    isPaused = true;
+                    timer.Stop();
+                    pause.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    isPaused = false;
+                    timer.Start();
+                    pause.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
         void UpdateBall()
         {
             ColorPlayers();
+
+            int maxscore = Convert.ToInt32(rules.Text);
+
+            if (countleft >= maxscore || countright >= maxscore)
+            {
+                GameOver();
+            }
+
             // Обновление позиции мяча
             ballX -= ballSpeedX;
             ballY += ballSpeedY;
@@ -169,25 +286,6 @@ namespace PingPong
                 GameOver();
             }
 
-            if (Keyboard.IsKeyDown(Key.Space))// это типа пауза
-            { 
-                pause.Visibility = Visibility.Visible;
-                if (timer.IsEnabled)//ИГРА РАБОТАЕТ
-                {
-                    timer.Stop();//Я ЕЕ ВЫРУБАЮ
-                }
-                else if(!timer.IsEnabled)//игра не работает. то бишь пауза
-                {
-                    //почему блять не работает((((((((((((((((((((((((((((((((((((((((((((
-                    //StartTimer();// я ее включаю....но она не включается(
-                    InitData();
-                    InitTimer();
-                    StartTimer();
-                    SetName();
-                    SetSpeed();
-                    //как жить а
-                }
-            }
             // Обработка столкновений мяча с ракетками и краями поля
             if (ballY >= (int)ActiveZone.ActualHeight / 2 - Ball.ActualHeight)
             {
@@ -227,6 +325,39 @@ namespace PingPong
             SetBall();
             SetRacket();
         }
+        void GameOver()
+        {
+            gameover.Visibility = Visibility.Visible;
+            run.Visibility = Visibility.Visible;
+            timer.Stop();
+            isPaused = true;
+            FileOutput();
+            UpdateGraph();
+            this.KeyDown -= OnKeyDown;
+        }
+
+        void FileOutput()
+        {
+            string filePath = Environment.CurrentDirectory + "//results.txt";
+            string win = "";
+            if (countleft > countright)
+            {
+                win = nameleftplayer;
+            } 
+            else if(countleft < countright)
+            {
+                win = namerightplayer;
+            }
+            if (win!="")
+            {
+                string res = DateTime.Now.ToString().PadLeft(20) + ($"{nameleftplayer}:").PadLeft(20) + ($"{countleft}").PadLeft(10) + ($"{namerightplayer}:").PadLeft(20) + ($"{countright}").PadLeft(10) + "Level:".PadLeft(10) + ($"{level.Text}").PadLeft(10) + "Win:".PadLeft(10) + ($"{win}").PadLeft(10);
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    writer.WriteLine(res);
+                }
+            }
+
+        }
 
         void ColorPlayers()
         {
@@ -244,23 +375,6 @@ namespace PingPong
             {
                 left.Foreground = new SolidColorBrush(Color.FromRgb(38, 124, 228));
                 right.Foreground = new SolidColorBrush(Color.FromRgb(38, 124, 228));
-            }
-        }
-        void GameOver()
-        {
-            gameover.Visibility = Visibility.Visible;
-            run.Visibility = Visibility.Visible;
-            timer.Stop();
-            FileOutput();
-        }
-
-        void FileOutput()
-        {
-            string filePath = @"C:\Users\mosol\OneDrive\Рабочий стол\results.txt.txt";
-            string res = DateTime.Now.ToString().PadLeft(20) + ($"{nameleftplayer}:").PadLeft(20) + ($"{countleft}").PadLeft(10) + ($"{namerightplayer}:").PadLeft(20) + ($"{countright}").PadLeft(10);
-            using (StreamWriter writer = new StreamWriter(filePath, true))
-            {
-                writer.WriteLine(res);
             }
         }
     }

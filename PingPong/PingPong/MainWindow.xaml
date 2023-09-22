@@ -1,13 +1,15 @@
-﻿<Window x:Class="PingPong.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPong"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:oxy="http://oxyplot.org/wpf" x:Class="PingPong.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
+        Title="Ping Pong" Height="450" Width="800" >
     <TabControl x:Name="tabControl1" Background="Black">
-        <TabItem x:Name="play" Header="Start Play (Exit->Esc)" BorderBrush="White">
+        <TabItem x:Name="play" Header="Play" BorderBrush="White">
             <TabItem.Background>
                 <LinearGradientBrush EndPoint="0,1">
                     <GradientStop Color="#FFF0F0F0"/>
@@ -15,30 +17,29 @@
                 </LinearGradientBrush>
             </TabItem.Background>
             <Grid x:Name="ActiveZone" Background="Black">
+                <Label x:Name="pause" Foreground="White" Margin="0,75,0,0" FontFamily="Arial Black" FontSize="30" Content="Pause" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label x:Name="gameover" Foreground="White" Margin="0,75,0,0" FontFamily="Arial Black" FontSize="30" Content="Game Over" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Canvas x:Name="canvasleft" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Rectangle Name="LeftRacket" HorizontalAlignment="Left" Height="100" Width="10" Fill="White" RenderTransformOrigin="0.6,-0.612" Canvas.Top="-50" VerticalAlignment="Center"/>
+                    <Rectangle x:Name="LeftRacket" HorizontalAlignment="Left" Height="100" Width="10" Fill="White" RenderTransformOrigin="0.6,-0.612" Canvas.Top="-50" VerticalAlignment="Center"/>
                 </Canvas>
                 <Canvas x:Name="canvasright" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Rectangle Name="RightRacket" HorizontalAlignment="Left" Height="100" Width="10" Fill="White" Canvas.Left="-10" Canvas.Top="-50" VerticalAlignment="Top"/>
+                    <Rectangle x:Name="RightRacket" HorizontalAlignment="Left" Height="100" Width="10" Fill="White" Canvas.Left="-10" Canvas.Top="-50" VerticalAlignment="Top"/>
                 </Canvas>
                 <Canvas x:Name="canvasball" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Rectangle Name="Ball" Height="15" Width="15" Fill="White" RadiusX="15" RadiusY="15" StrokeThickness="0" RenderTransformOrigin="0.5,0.603" HorizontalAlignment="Left" Canvas.Left="-7" VerticalAlignment="Center"/>
+                    <Rectangle x:Name="Ball" Height="15" Width="15" Fill="White" RadiusX="15" RadiusY="15" StrokeThickness="0" RenderTransformOrigin="0.5,0.603" HorizontalAlignment="Left" Canvas.Left="-7" VerticalAlignment="Center"/>
                 </Canvas>
-                <Button x:Name="run" Content="Run" Foreground="White" FontFamily="Arial Black" FontSize="30" Click="Run_Click" Background="Black" Height="100" Width="180"></Button>
-                <Label Name="left" Foreground="White" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Width="206" Margin="22,0,0,0">Left: 0</Label>
-                <Label Name="right" Foreground="White" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Width="200">Right: 0</Label>
-                <Label Name="size" Height="50" Width="100" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top">deswa</Label>
-                <Label Name="pause" Foreground="White" HorizontalAlignment="Center" Margin="0,67,0,254" FontFamily="Arial Black" FontSize="30" >Pause</Label>
-                <Label Name="gameover" Foreground="White" HorizontalAlignment="Center" Margin="0,67,0,254" FontFamily="Arial Black" FontSize="30" >Game Over</Label>
+                <Button x:Name="run" Content="Run" Foreground="White" FontFamily="Arial Black" FontSize="30" Click="Run_Click" Background="Black" Height="100" Width="180"/>
+                <Label x:Name="left" Foreground="White" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Width="206" Margin="22,0,0,0" Content="Left: 0"/>
+                <Label x:Name="right" Foreground="White" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Width="200" Content="Right: 0"/>
             </Grid>
         </TabItem>
         <TabItem Header="Settings" BorderBrush="White">
             <StackPanel Margin="10" VerticalAlignment="Center">
-                <Label Foreground="White" FontFamily="Arial Black" HorizontalAlignment="Center">Left player name:</Label>
+                <Label Foreground="White" FontFamily="Arial Black" HorizontalAlignment="Center" Content="Left player name:"/>
                 <TextBox x:Name="leftname" TextWrapping="Wrap" Text="Left" Width="160" HorizontalAlignment="Center" FontFamily="Arial Black" MaxLength="15" MaxLines="1"/>
-                <Label Foreground="White" FontFamily="Arial Black" HorizontalAlignment="Center">Right player name:</Label>
+                <Label Foreground="White" FontFamily="Arial Black" HorizontalAlignment="Center" Content="Right player name:"/>
                 <TextBox x:Name="rightname" TextWrapping="Wrap" Text="Right" Width="160" HorizontalAlignment="Center" FontFamily="Arial Black" MaxLength="15" MaxLines="1"/>
-                <Label HorizontalAlignment="Center" Foreground="White" FontFamily="Arial Black">Level:</Label>
+                <Label HorizontalAlignment="Center" Foreground="White" FontFamily="Arial Black" Content="Level:"/>
                 <ComboBox x:Name="level" Width="160" SelectedIndex="1" BorderBrush="White">
                     <ComboBox.Background>
                         <LinearGradientBrush EndPoint="0,1">
@@ -46,12 +47,34 @@
                             <GradientStop Color="White" Offset="1"/>
                         </LinearGradientBrush>
                     </ComboBox.Background>
-                    <ComboBoxItem x:Name="light">Light</ComboBoxItem>
-                    <ComboBoxItem x:Name="middle">Middle</ComboBoxItem>
-                    <ComboBoxItem x:Name="high">High</ComboBoxItem>
+                    <ComboBoxItem x:Name="light" Content="Light"/>
+                    <ComboBoxItem x:Name="middle" Content="Middle"/>
+                    <ComboBoxItem x:Name="high" Content="High"/>
                 </ComboBox>
-                <Button Width="162" HorizontalAlignment="Center" Margin="10" Background="Black" Foreground="White" FontFamily="Arial Black" Height="23" Click="Button_Click">Применить</Button>
+                <Label HorizontalAlignment="Center" Foreground="White" FontFamily="Arial Black" Content="Score:"/>
+                <ComboBox x:Name="rules" Width="160" SelectedIndex="0" BorderBrush="White">
+                    <ComboBox.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#FFF0F0F0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Background>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="20"/>
+                    <ComboBoxItem Content="30"/>
+                    <ComboBoxItem Content="40"/>
+                    <ComboBoxItem Content="50"/>
+                </ComboBox>
+                <Button Width="162" HorizontalAlignment="Center" Margin="10" Background="Black" Foreground="White" FontFamily="Arial Black" Height="23" Click="Button_Click" Content="Apply"/>
+                <Label x:Name="btn_Copy" Foreground="#FF707070" FontFamily="Arial Black" Content="Esc - Exit&#xA;Space - Pause&#xA;&#xA;A - Up Left&#xA;Z - Down Left&#xA;&#xA;K - Up Right&#xA;M - Down Right" Width="119" />
             </StackPanel>
+        </TabItem>
+        <TabItem Header="Top-5" BorderBrush="White" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" Width="43">
+            <Grid>
+
+                <oxy:PlotView x:Name="plot" Model="{Binding MyModel}"/>
+
+            </Grid>
         </TabItem>
     </TabControl>
 

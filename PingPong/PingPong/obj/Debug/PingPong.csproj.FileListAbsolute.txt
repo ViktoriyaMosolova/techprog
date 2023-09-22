@@ -34,3 +34,15 @@ C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\obj\D
 C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\obj\Debug\PingPong.csproj.CopyComplete
 C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\obj\Debug\PingPong.exe
 C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\obj\Debug\PingPong.pdb
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.dll
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.pdb
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.xml
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.dll
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.Wpf.Shared.dll
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.xml
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.Wpf.xml
+C:\Users\mosol\OneDrive\Рабочий стол\techprog\PingPong\PingPong\bin\Debug\OxyPlot.Wpf.Shared.xml
